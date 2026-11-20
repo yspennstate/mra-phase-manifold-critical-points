@@ -35,7 +35,7 @@ Multireference alignment recovers a signal from noisy, cyclically shifted copies
 
 \section{Introduction}
 
-In multireference alignment one observes $\xi_i=R_{j_i}x+\tau\epsilon_i$, $i=1,\dots,N$, where $N$ is the number of observations, $x\in\R^L$ is the true signal, $R_j$ is the cyclic shift $(R_jz)(t)=z(t+j\bmod L)$, the shifts $j_i$ are unknown, $\tau>0$ is the noise level and $\epsilon_i$ are independent standard Gaussian vectors. Bandeira, Charikar, Singer and Zhu~\cite{BCSZ14} studied the problem by semidefinite programming. The power spectrum of the observations determines the power spectrum of $x$, the squared moduli of its Fourier coefficients, but not their phases. Bendory, Boumal, Ma, Zhao and Singer~\cite{BBMZS18} recover the phases from the bispectrum. Perry, Weed, Bandeira, Rigollet and Singer~\cite{PWBRS19} show that for a generic signal the number of observations needed grows like $1/\mathrm{SNR}^3$ at low signal-to-noise ratio $\mathrm{SNR}$, against $1/\mathrm{SNR}$ at high $\mathrm{SNR}$. For the likelihood of the same model, Fan, Sun, Wang and Wu~\cite[Theorems~3.1 and~3.3]{FSWW23} show that when $x$ is not fixed by a nontrivial shift and the noise is small, every critical point other than the shifts of $x$ has a direction of negative curvature.
+In multireference alignment one observes $\xi_i=R_{j_i}x+\tau\epsilon_i$, $i=1,\dots,N$, where $N$ is the number of observations, $x\in\R^L$ is the true signal, $R_j$ is the cyclic shift $(R_jz)(t)=z(t+j\bmod L)$, the shifts $j_i$ are unknown, $\tau>0$ is the noise level and $\epsilon_i$ are independent standard Gaussian vectors. This paper concerns a conjecture of Shahverdi, Str\"om and And\'en~\cite[Conjecture~3.8]{SSA24} on the critical points of the loss of moment-constrained alignment, a method they introduced for this problem; Theorem~\ref{thm:main} gives a signal of length seven for which it fails. Bandeira, Charikar, Singer and Zhu~\cite{BCSZ14} studied the problem by semidefinite programming. The power spectrum of the observations determines the power spectrum of $x$, the squared moduli of its Fourier coefficients, but not their phases. Bendory, Boumal, Ma, Zhao and Singer~\cite{BBMZS18} recover the phases from the bispectrum. Perry, Weed, Bandeira, Rigollet and Singer~\cite{PWBRS19} show that for a generic signal the number of observations needed grows like $1/\mathrm{SNR}^3$ at low signal-to-noise ratio $\mathrm{SNR}$, against $1/\mathrm{SNR}$ at high $\mathrm{SNR}$. For the likelihood of the same model, Fan, Sun, Wang and Wu~\cite[Theorems~3.1 and~3.3]{FSWW23} show that when $x$ is not fixed by a nontrivial shift and the noise is small, every critical point other than the shifts of $x$ has a direction of negative curvature.
 
 Write $\widehat z(k)=\sum_{t=0}^{L-1}z(t)e^{-2\pi\mathrm{i}kt/L}$. For $x\in\R^L$ with mean zero, the \emph{phase manifold} of $x$ is
 \[
@@ -90,10 +90,7 @@ Whether $x$ is the global minimizer of the loss, and whether the sign flips othe
 \section{Proofs and remarks}\label{sec:proof}
 
 \begin{lemma}\label{lem:score}
-Let $x\in\R^L$ have mean zero, $\tau\ge0$ and $z\in\mathcal M_x$, and put $F_\tau(z)=\E\max_{0\le j<L}\langle R_j(x+\tau\epsilon),z\rangle$. Then
-\[
-\mathcal L(z;x,\tau)=\tfrac12\|x\|^2+\tfrac12\E\|x+\tau\epsilon\|^2-F_\tau(z)\qquad\text{and}\qquad F_0(z)\le F_\tau(z)\le F_0(z)+\tau\|x\|\sqrt L .
-\]
+Let $x\in\R^L$ have mean zero, $\tau\ge0$ and $z\in\mathcal M_x$. Then~\eqref{eq:sandwich} holds.
 \end{lemma}
 
 \begin{proof}
