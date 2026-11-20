@@ -2,7 +2,7 @@
 
 Yitzchak Shmalo
 
-Shahverdi, Ström and Andén (arXiv:2409.04868) restrict the expected template-alignment loss of multireference
+Shahverdi, Ström and Andén (arXiv:2409.04868) restrict the moment-constrained alignment loss of multireference
 alignment to the signals with the power spectrum of the true signal, and conjecture (Conjecture 3.8) that for signals
 of odd length the only critical points are the sign flips, with the negative of the true signal as the global
 maximizer. This note gives a signal of length seven for which, at every noise level up to 1/100, another
