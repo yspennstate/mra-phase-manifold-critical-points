@@ -10,7 +10,7 @@ sign (-1, -1, 1) F0 = 2.370469
 sign (-1, -1, -1) F0 = 1.400969
 witness (0,5,10) F0 = 1.321552
 noiseless gap to every sign pattern 0.079417 ; bound 2*sqrt(7)*tau at tau=0.01: 0.052915
-tau 0.01  witness F=1.32162+-0.00004  min over sign patterns F=1.41209
-tau 0.10  witness F=1.45811+-0.00032  min over sign patterns F=1.51239
-tau 0.30  witness F=1.87726+-0.00089  min over sign patterns F=1.81571
+tau 0.01  witness F=1.32162+-0.00004  min over sign patterns F=1.41209+-0.00004 (at (-1, -1, -1))  difference 0.09047+-0.00003
+tau 0.10  witness F=1.45811+-0.00032  min over sign patterns F=1.51239+-0.00037 (at (-1, -1, -1))  difference 0.05428+-0.00023
+tau 0.30  witness F=1.87726+-0.00089  min over sign patterns F=1.81571+-0.00097 (at (-1, -1, -1))  difference -0.06155+-0.00066
 int: ||x||^2 238 same power True F0(-x) 154 F0(z) 140

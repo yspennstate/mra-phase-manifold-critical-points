@@ -29,9 +29,13 @@ def score0(z):
     return max(shifts(x) @ z)
 
 
-def score_mc(z, tau, G):
+def samples(z, tau, G):
     X = x[None, :] + tau * G
-    best = np.max(np.stack([np.roll(X, -j, axis=1) @ z for j in range(L)]), axis=0)
+    return np.max(np.stack([np.roll(X, -j, axis=1) @ z for j in range(L)]), axis=0)
+
+
+def score_mc(z, tau, G):
+    best = samples(z, tau, G)
     return best.mean(), best.std() / np.sqrt(len(best))
 
 
@@ -56,9 +60,13 @@ print('noiseless gap to every sign pattern %.6f ; bound 2*sqrt(7)*tau at tau=0.0
 rng = np.random.default_rng(1)
 G = rng.standard_normal((200000, L))
 for tau in (0.01, 0.1, 0.3):
-    m, e = score_mc(zstar, tau, G)
-    lo = min(score_mc(z, tau, G)[0] for _, z in pats)
-    print('tau %.2f  witness F=%.5f+-%.5f  min over sign patterns F=%.5f' % (tau, m, e, lo))
+    bw = samples(zstar, tau, G)
+    bs = [samples(z, tau, G) for _, z in pats]
+    i = int(np.argmin([b.mean() for b in bs]))
+    d = bs[i] - bw
+    n = np.sqrt(len(bw))
+    print('tau %.2f  witness F=%.5f+-%.5f  min over sign patterns F=%.5f+-%.5f (at %s)  difference %.5f+-%.5f'
+          % (tau, bw.mean(), bw.std() / n, bs[i].mean(), bs[i].std() / n, pats[i][0], d.mean(), d.std() / n))
 
 # integer witness
 u = np.array([0, 1, 0, 2, 0, 2, 1]); xi = 7 * u - 6

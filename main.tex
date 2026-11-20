@@ -26,7 +26,7 @@ Jerusalem, Givat Ram,}\\
 \maketitle
 
 \begin{abstract}
-Multireference alignment recovers a signal from noisy, cyclically shifted copies. Shahverdi, Str\"om and And\'en restrict the expected loss of template alignment to the signals with the power spectrum of the true signal. They show that the signals whose Fourier coefficients agree with those of the true signal up to signs are critical, and conjecture that for odd length these are the only critical points, with the negative of the true signal as the global maximum. We give a true signal $x$ of length seven and norm two and a signal $z_*$ with the same power spectrum. At every noise level up to one hundredth, $z_*$ has larger expected loss than every signal whose Fourier coefficients are those of $x$ up to signs, $-x$ included. The loss therefore has at least ten critical points up to cyclic shifts, where the conjecture predicts eight. By rescaling, the conjecture fails at every positive noise level.
+Multireference alignment recovers a signal from noisy, cyclically shifted copies. Shahverdi, Str\"om and And\'en restrict the expected loss of template alignment to the signals with the power spectrum of the true signal. They show that the signals whose Fourier coefficients agree with those of the true signal up to signs are critical, and conjecture that for odd length these are the only critical points, with the negative of the true signal as the global maximizer. We give a true signal $x$ of length seven and norm two and a signal $z_*$ with the same power spectrum. At every noise level up to one hundredth, $z_*$ has larger expected loss than every signal whose Fourier coefficients are those of $x$ up to signs, $-x$ included. The loss then has at least ten critical points up to cyclic shifts, where the conjecture predicts eight. By rescaling, the conjecture fails at every positive noise level.
 \end{abstract}
 
 \noindent\textit{Keywords:} multireference alignment, method of moments, power spectrum, phase manifold, critical points.
@@ -35,38 +35,44 @@ Multireference alignment recovers a signal from noisy, cyclically shifted copies
 
 \section{Introduction}
 
-In multireference alignment one observes $\xi_i=R_{j_i}x+\tau\epsilon_i$, $i=1,\dots,N$, where $N$ is the number of observations, $x\in\R^L$ is the true signal, $R_j$ is the cyclic shift $(R_jz)(t)=z(t+j\bmod L)$, the shifts $j_i$ are unknown, $\tau>0$ is the noise level and $\epsilon_i$ are independent standard Gaussian vectors. Bandeira, Charikar, Singer and Zhu~\cite{BCSZ14} studied the problem by semidefinite programming. The power spectrum of the observations determines the power spectrum of $x$, the squared moduli of its Fourier coefficients, but not their phases. Bendory, Boumal, Ma, Zhao and Singer~\cite{BBMZS18} recover the phases from the bispectrum. Perry, Weed, Bandeira, Rigollet and Singer~\cite{PWBRS19} show that for a generic signal the number of observations needed grows like $1/\mathrm{SNR}^3$ at low signal-to-noise ratio $\mathrm{SNR}$, against $1/\mathrm{SNR}$ at high $\mathrm{SNR}$. For a fixed signal the ratio is proportional to $\tau^{-2}$, so the two rates are $\tau^6$ for large $\tau$ and $\tau^2$ for small $\tau$. For the likelihood of the same model, Fan, Sun, Wang and Wu~\cite[Theorems~3.1 and~3.3]{FSWW23} show that when $x$ is not fixed by a nontrivial shift and the noise is small, every critical point other than the shifts of $x$ has a direction of negative curvature. Shahverdi, Str\"om and And\'en~\cite{SSA24} restrict template alignment to the signals with the power spectrum of $x$ and call the resulting iteration moment constrained alignment. It is a block coordinate descent on a finite-data loss, and the values of that loss along the iterates converge~\cite[Section~4, Proposition~4.1]{SSA24}. They study the critical points of the limit of that loss as $N\to\infty$~\cite[(2.9)]{SSA24}, the expected loss, which we also call the moment-constrained alignment loss. The expected loss is not the likelihood, and the theorems of Fan, Sun, Wang and Wu do not apply to it.
+In multireference alignment one observes $\xi_i=R_{j_i}x+\tau\epsilon_i$, $i=1,\dots,N$, where $N$ is the number of observations, $x\in\R^L$ is the true signal, $R_j$ is the cyclic shift $(R_jz)(t)=z(t+j\bmod L)$, the shifts $j_i$ are unknown, $\tau>0$ is the noise level and $\epsilon_i$ are independent standard Gaussian vectors. Bandeira, Charikar, Singer and Zhu~\cite{BCSZ14} studied the problem by semidefinite programming. The power spectrum of the observations determines the power spectrum of $x$, the squared moduli of its Fourier coefficients, but not their phases. Bendory, Boumal, Ma, Zhao and Singer~\cite{BBMZS18} recover the phases from the bispectrum. Perry, Weed, Bandeira, Rigollet and Singer~\cite{PWBRS19} show that for a generic signal the number of observations needed grows like $1/\mathrm{SNR}^3$ at low signal-to-noise ratio $\mathrm{SNR}$, against $1/\mathrm{SNR}$ at high $\mathrm{SNR}$. For the likelihood of the same model, Fan, Sun, Wang and Wu~\cite[Theorems~3.1 and~3.3]{FSWW23} show that when $x$ is not fixed by a nontrivial shift and the noise is small, every critical point other than the shifts of $x$ has a direction of negative curvature.
 
 Write $\widehat z(k)=\sum_{t=0}^{L-1}z(t)e^{-2\pi\mathrm{i}kt/L}$. For $x\in\R^L$ with mean zero, the \emph{phase manifold} of $x$ is
 \[
 \mathcal M_x=\Bigl\{z\in\R^L:\ \textstyle\sum_t z(t)=0,\ |\widehat z(k)|=|\widehat x(k)|\text{ for }1\le k\le L-1\Bigr\},
 \]
-the set of signals of mean zero with the power spectrum of $x$; in the notation of~\cite[(2.4)]{SSA24} it is $\mathcal M_{m_2}$, where $m_2$ is the power spectrum of $x$. For $z,\xi\in\R^L$ the aligning function is $\sigma(z;\xi)=R_{j}\xi$, where $j$ minimizes $\|z-R_j\xi\|$, equivalently maximizes $\langle z,R_j\xi\rangle$; ties occur with probability zero below. With $\epsilon$ a standard Gaussian vector in $\R^L$, the expected loss of~\cite[(2.11)]{SSA24} is
+the set of signals of mean zero with the power spectrum of $x$; in the notation of~\cite[(2.4)]{SSA24} it is $\mathcal M_{m_2}$, where $m_2$ is the second-order moment of $x$~\cite[(2.2)]{SSA24}. For $z,\xi\in\R^L$ the aligning function is $\sigma(z;\xi)=R_{j}\xi$, where $j$ minimizes $\|z-R_j\xi\|$, equivalently maximizes $\langle z,R_j\xi\rangle$; ties occur with probability zero below.
+
+Template alignment replaces a template $z$ by the average of the aligned observations $\sigma(z;\xi_i)$. Shahverdi, Str\"om and And\'en~\cite{SSA24} alternate this step with the projection onto $\mathcal M_x$ and call the iteration moment-constrained alignment. It is a block coordinate descent on the finite-data loss
+\[
+\mathcal L_N(z)=\frac1{2N}\sum_{i=1}^N\bigl\|z-\sigma(z;\xi_i)\bigr\|^2
+\]
+of~\cite[(2.7)]{SSA24}, whose values along the iterates converge~\cite[Proposition~4.1]{SSA24}. Up to an additive constant and the factor $N/\tau^2$, $\mathcal L_N$ is the negative log-likelihood of the signal and the shifts jointly, minimized over the shifts~\cite[Sections~1 and~4]{SSA24}. Fan, Sun, Wang and Wu treat the likelihood in which the shifts are integrated out, and their theorems do not apply to the limit of $\mathcal L_N$ as $N\to\infty$~\cite[(2.9)]{SSA24}, the expected loss of moment-constrained alignment, called below the moment-constrained alignment loss or simply the loss. With $\epsilon$ a standard Gaussian vector in $\R^L$, it is~\cite[(2.11)]{SSA24}
 \[
 \mathcal L(z;x,\tau)=\E\,\tfrac12\bigl\|z-\sigma(z;x+\tau\epsilon)\bigr\|^2 .
 \]
-It is invariant under cyclic shifts of $z$, and for $\tau>0$ it is smooth on $\mathcal M_x$~\cite[Theorem~3.2]{SSA24}. Call $z\in\mathcal M_x$ a \emph{sign point}, or a sign flip of $x$, if $\widehat z(k)\in\{\widehat x(k),-\widehat x(k)\}$ for every $k$. Shahverdi, Str\"om and And\'en prove that for $L$ odd and $x$ not fixed by a nontrivial shift every sign point is critical for $\mathcal L(\,\cdot\,;x,\tau)$ on $\mathcal M_x$, and that up to cyclic shifts there are $2^{s}$ sign points, where $s$ is the number of indices $1\le k\le (L-1)/2$ with $\widehat x(k)\neq0$~\cite[Proposition~3.7]{SSA24}. For $L$ odd, $\mathcal M_x$ is a torus of dimension $s$~\cite[Remark~2.1]{SSA24}. Shahverdi, Str\"om and And\'en conjecture that there are no other critical points.
+It is invariant under cyclic shifts of $z$, and for $\tau>0$ it is smooth on $\mathcal M_x$~\cite[Theorem~3.2]{SSA24}. Call $z\in\mathcal M_x$ a \emph{sign flip} of $x$ if $\widehat z(k)\in\{\widehat x(k),-\widehat x(k)\}$ for every $k$. Let $s$ be the number of indices $1\le k\le (L-1)/2$ with $\widehat x(k)\neq0$. Shahverdi, Str\"om and And\'en prove that for $L$ odd and $x$ not fixed by a nontrivial shift every sign flip is critical for $\mathcal L(\,\cdot\,;x,\tau)$ on $\mathcal M_x$, and that up to cyclic shifts there are $2^{s}$ sign flips~\cite[Proposition~3.7]{SSA24}. For $L$ odd, $\mathcal M_x$ is a torus of dimension $s$~\cite[Remark~2.1]{SSA24}. Shahverdi, Str\"om and And\'en conjecture that there are no other critical points.
 
 \begin{conjecture}[{\cite[Conjecture~3.8]{SSA24}}]\label{conj}
-Let $L$ be odd, let $x\in\R^L$ have mean zero and let $\tau>0$. Then $\mathcal L(\,\cdot\,;x,\tau)$ has exactly $2^{s}$ critical points on $\mathcal M_x$ up to cyclic shifts, namely the sign points. In particular $x$ and $-x$ are its global minimum and maximum, and the other sign points are saddle points.
+Let $L$ be odd, let $x\in\R^L$ have mean zero and let $\tau>0$. Then $\mathcal L(\,\cdot\,;x,\tau)$ has exactly $2^{s}$ critical points on $\mathcal M_x$ up to cyclic shifts, namely the sign flips. In particular $x$ and $-x$ are its global minimizer and maximizer, and the other sign flips are saddle points.
 \end{conjecture}
 
-In the experiments of Shahverdi, Str\"om and And\'en the only local minima found are the shifts of $x$, and their Theorem~3.9 shows that $x$ is a local minimum when $L$ is odd and $x$ is a sinusoid, so that $\mathcal M_x$ is a circle~\cite{SSA24}. Neither concerns the maximum, and it is at the maximum that the conjecture fails. For $\tau\ge0$ and $z\in\mathcal M_x$ put $F_\tau(z)=\E\max_{0\le j<L}\langle R_j(x+\tau\epsilon),z\rangle$, so that $F_0(z)=\max_{0\le j<L}\langle R_jx,z\rangle$. Since $\|z\|=\|x\|$ on $\mathcal M_x$,
+In the experiments of Shahverdi, Str\"om and And\'en the only local minimizers found are the shifts of $x$. Their Theorem~3.9 shows that $x$ is a local minimizer when $L$ is odd and $x$ is a sinusoid, so that $\mathcal M_x$ is a circle~\cite{SSA24}. Neither concerns the maximizer, and it is at the maximizer that the conjecture fails. For $\tau\ge0$ and $z\in\mathcal M_x$ put $F_\tau(z)=\E\max_{0\le j<L}\langle R_j(x+\tau\epsilon),z\rangle$, so that $F_0(z)=\max_{0\le j<L}\langle R_jx,z\rangle$. By Lemma~\ref{lem:score},
 \begin{equation}\label{eq:sandwich}
 \mathcal L(z;x,\tau)=\tfrac12\|x\|^2+\tfrac12\E\|x+\tau\epsilon\|^2-F_\tau(z),\qquad F_0(z)\le F_\tau(z)\le F_0(z)+\tau\|x\|\sqrt L ,
 \end{equation}
-where the lower bound is Jensen's inequality and the upper bound is the Cauchy--Schwarz inequality (Lemma~\ref{lem:score}). Hence a point $z_*\in\mathcal M_x$ has larger loss than a sign point $z'$ whenever
+where the lower bound is Jensen's inequality and the upper bound is the Cauchy--Schwarz inequality. Hence a point $z\in\mathcal M_x$ has larger loss than a sign flip $z'$ whenever
 \[
-F_0(z')-F_0(z_*)>\tau\|x\|\sqrt L .
+F_0(z')-F_0(z)>\tau\|x\|\sqrt L .
 \]
-The conjecture would require $-x$ to minimize $F_\tau$ on $\mathcal M_x$, and already for $\tau=0$ it does not. For the signal $x$ of length seven in Theorem~\ref{thm:main}, $F_0(z')\ge1.400966$ at each of the eight sign points, with the smallest value at $z'=-x$, while $F_0(z_*)\le1.321553$ at a point $z_*\in\mathcal M_x$ that is not a sign point. The difference is at least $0.079413$, and $\tau\|x\|\sqrt L=2\sqrt7\,\tau\le0.0530$ for $\tau\le1/100$. A maximizer of the loss on $\mathcal M_x$ is then a critical point that is not a shift of a sign point.
+The conjecture would require $-x$ to minimize $F_\tau$ on $\mathcal M_x$, and already for $\tau=0$ it does not. For the signal $x$ of length seven in Theorem~\ref{thm:main}, $F_0(z')\ge1.400966$ at each of the eight sign flips, with the smallest value at $z'=-x$, while $F_0(z_*)\le1.321553$ at a point $z_*\in\mathcal M_x$ that is not a sign flip. The difference is at least $0.079413$, and $\tau\|x\|\sqrt L=2\sqrt7\,\tau\le0.0530$ for $\tau\le1/100$. A maximizer of the loss on $\mathcal M_x$ is then a critical point that is not a shift of a sign flip.
 
 \begin{theorem}\label{thm:main}
 Let $L=7$, $w=(w_1,w_2,w_3)=(1,1,2)$ and, for $p\in\R^3$,
 \[
 z_p(t)=\sum_{k=1}^3\sqrt{2w_k/7}\,\cos\bigl((2kt+p_k)\pi/7\bigr),\qquad x=z_{(0,0,0)},\qquad z_*=z_{(0,5,10)} .
 \]
-Then $z_*\in\mathcal M_x$, and for every $0<\tau\le 1/100$ and every sign point $z'$ of $x$,
+Then $z_*\in\mathcal M_x$, and for every $0<\tau\le 1/100$ and every sign flip $z'$ of $x$,
 \[
 \mathcal L(z_*;x,\tau)>\mathcal L(z';x,\tau).
 \]
@@ -74,17 +80,20 @@ In particular $-x$ is not a global maximizer of $\mathcal L(\,\cdot\,;x,\tau)$ o
 \end{theorem}
 
 \begin{corollary}\label{cor:count}
-For $x$ as in Theorem~\ref{thm:main} and $0<\tau\le1/100$, the loss $\mathcal L(\,\cdot\,;x,\tau)$ has at least ten critical points on $\mathcal M_x$ up to cyclic shifts: the eight sign points and two global maximizers that are not shifts of sign points or of each other.
+For $x$ as in Theorem~\ref{thm:main} and $0<\tau\le1/100$, the loss $\mathcal L(\,\cdot\,;x,\tau)$ has at least ten critical points on $\mathcal M_x$ up to cyclic shifts: the eight sign flips and two global maximizers that are not shifts of sign flips or of each other.
 \end{corollary}
 
-Since $\mathcal L(\lambda z;\lambda x,\lambda\tau)=\lambda^2\mathcal L(z;x,\tau)$ for $\lambda>0$~\cite[Lemma~2.10(i)]{SSA24}, the signal $\lambda x$ with $\lambda\ge100\tau$ is a counterexample at noise level $\tau$, so Conjecture~\ref{conj} fails at every $\tau>0$. Here $\|x\|=2$, so the theorem covers noise levels up to $\|x\|/200$. For $w\in(0,\infty)^3$ the eight sign points of $x=z_{(0,0,0)}$ are the $z_e$, $e\in\{0,7\}^3$, and the numbers $F_0(z_e)$, $F_0(z_{(0,5,10)})$ and $\|x\|=(w_1+w_2+w_3)^{1/2}$ are continuous in $w$. The inequality $\min_eF_0(z_e)-F_0(z_{(0,5,10)})>\|x\|\sqrt7/100$ is strict at $w=(1,1,2)$, so it holds in a neighbourhood of $(1,1,2)$, and with it Theorem~\ref{thm:main} and Corollary~\ref{cor:count}.
+Since $\mathcal L(\lambda z;\lambda x,\lambda\tau)=\lambda^2\mathcal L(z;x,\tau)$ for $\lambda>0$~\cite[Lemma~2.10(i)]{SSA24}, the signal $\lambda x$ with $\lambda\ge100\tau$ is a counterexample at noise level $\tau$, so Conjecture~\ref{conj} fails at every $\tau>0$. Here $\|x\|=2$, so the theorem covers noise levels up to $\|x\|/200$. Now let $w$ range over $(0,\infty)^3$ in the definition of $z_p$. The eight sign flips of $x=z_{(0,0,0)}$ are again the $z_e$, $e\in\{0,7\}^3$, and the numbers $F_0(z_e)$, $F_0(z_{(0,5,10)})$ and $\|x\|=(w_1+w_2+w_3)^{1/2}$ are continuous in $w$. The inequality $\min_eF_0(z_e)-F_0(z_{(0,5,10)})>\|x\|\sqrt7/100$ is strict at $w=(1,1,2)$, so it holds for $w$ in a neighbourhood of $(1,1,2)$, and for such $w$ the proofs of Theorem~\ref{thm:main} and Corollary~\ref{cor:count} apply with $2$ replaced by $\|x\|$. Finally, by~\cite[Lemma~3.1]{SSA24}, $\mathcal L(Cz;Cx,\tau)=\mathcal L(z;x,\tau)$ for every circulant special orthogonal matrix $C$. Such a matrix commutes with the shifts and multiplies the $k$th Fourier coefficient by a complex number of modulus one, so it carries the sign flips of $x$ to those of $Cx$, and these matrices act transitively on $\mathcal M_x$ for odd $L$~\cite[Remark~2.3]{SSA24}. Hence Theorem~\ref{thm:main} and Corollary~\ref{cor:count} hold for every true signal in $\mathcal M_x$, with $z_*$ replaced by $Cz_*$ and $Q$ in the proof of the corollary by $CQC^{-1}$, and for each $\tau>0$ Conjecture~\ref{conj} fails on a nonempty open subset of the hyperplane of signals of mean zero in $\R^7$.
 
-Whether $x$ is the global minimum of the loss, and whether the sign points other than $\pm x$ are saddle points, remains open.
+Whether $x$ is the global minimizer of the loss, and whether the sign flips other than $\pm x$ are saddle points, remains open.
 
-\section{Proofs}\label{sec:proof}
+\section{Proofs and remarks}\label{sec:proof}
 
 \begin{lemma}\label{lem:score}
-Let $x\in\R^L$ have mean zero, $\tau\ge0$ and $z\in\mathcal M_x$. Then~\eqref{eq:sandwich} holds.
+Let $x\in\R^L$ have mean zero, $\tau\ge0$ and $z\in\mathcal M_x$, and put $F_\tau(z)=\E\max_{0\le j<L}\langle R_j(x+\tau\epsilon),z\rangle$. Then
+\[
+\mathcal L(z;x,\tau)=\tfrac12\|x\|^2+\tfrac12\E\|x+\tau\epsilon\|^2-F_\tau(z)\qquad\text{and}\qquad F_0(z)\le F_\tau(z)\le F_0(z)+\tau\|x\|\sqrt L .
+\]
 \end{lemma}
 
 \begin{proof}
@@ -92,15 +101,15 @@ Shifts are orthogonal, so $\tfrac12\|z-R_j\xi\|^2=\tfrac12\|z\|^2+\tfrac12\|\xi\
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-The $k$th term of $z_p$ is a cosine of frequency $k$ and phase $p_k\pi/7$, so $z_p$ has $\widehat{z_p}(0)=0$ and $|\widehat{z_p}(k)|=|\widehat{z_p}(7-k)|=\sqrt{7w_k/2}$ for $k=1,2,3$. Hence $z_p\in\mathcal M_x$ for every $p$. Since $\widehat x(k)>0$ for $1\le k\le 6$ and adding $7$ to $p_k$ changes the sign of the $k$th mode, the sign points of $x$ are exactly the eight vectors $z_e$, $e\in\{0,7\}^3$. By Lemma~\ref{lem:score}, with $\|x\|=2$ and $L=7$, it suffices to show
+The $k$th term of $z_p$ is a cosine of frequency $k$ and phase $p_k\pi/7$, so $z_p$ has $\widehat{z_p}(0)=0$ and $|\widehat{z_p}(k)|=|\widehat{z_p}(7-k)|=\sqrt{7w_k/2}$ for $k=1,2,3$. Hence $z_p\in\mathcal M_x$ for every $p$. Since $\widehat x(k)>0$ for $1\le k\le 6$ and adding $7$ to $p_k$ changes the sign of the $k$th term, the sign flips of $x$ are exactly the eight vectors $z_e$, $e\in\{0,7\}^3$. By Lemma~\ref{lem:score}, with $\|x\|=2$ and $L=7$, it suffices to show
 \begin{equation}\label{eq:gap}
 \min_{e\in\{0,7\}^3}F_0(z_e)-F_0(z_*)>2\sqrt7/100 .
 \end{equation}
-Orthogonality of the cosine modes gives, after replacing $j$ by $-j$,
+Orthogonality of the cosine terms gives, after replacing $j$ by $-j$,
 \[
 F_0(z_p)=\max_{0\le j<7}\sum_{k=1}^3w_k\cos\bigl((2kj+p_k)\pi/7\bigr).
 \]
-For $p\in\mathbb Z^3$ every angle here is an integer multiple of $\pi/7$, so every term is $w_k$ times one of $\pm1$, $\pm c_1$, $\pm c_2$, $\pm c_3$, where $c_l=\cos(2\pi l/7)$. These three numbers are the roots of $8t^3+4t^2-4t-1$: summing the seventh roots of unity in conjugate pairs gives $1+2\cos\theta+2\cos 2\theta+2\cos3\theta=0$ for $\theta=2\pi l/7$, and $\cos2\theta=2\cos^2\theta-1$, $\cos3\theta=4\cos^3\theta-3\cos\theta$. The polynomial changes sign on the three disjoint intervals $[a,a+1]\cdot10^{-6}$ with $a=623489$, $-222521$, $-900969$, so each contains one root, and $c_1>c_2>c_3$ fixes which. Adding the intervals with weights $w_k$ and taking maxima over $j$ gives the following intervals for $F_0(z_p)$, the endpoints multiplied by $10^6$; the column $e_1e_2e_3$ is the sign point $z_e$, so that $007$ stands for $e=(0,0,7)$, and the last column is $z_*$:
+For $p\in\mathbb Z^3$ every angle here is an integer multiple of $\pi/7$, so every term is $w_k$ times one of $\pm1$, $\pm c_1$, $\pm c_2$, $\pm c_3$, where $c_l=\cos(2\pi l/7)$. These three numbers are the roots of $8t^3+4t^2-4t-1$: summing the seventh roots of unity in conjugate pairs gives $1+2\cos\theta+2\cos 2\theta+2\cos3\theta=0$ for $\theta=2\pi l/7$, and $\cos2\theta=2\cos^2\theta-1$, $\cos3\theta=4\cos^3\theta-3\cos\theta$. The polynomial changes sign on the three disjoint intervals $[a,a+1]\cdot10^{-6}$ with $a=623489$, $-222521$, $-900969$, so each contains one root, and $c_1>c_2>c_3$ fixes which. Adding the intervals with weights $w_k$ and taking maxima over $j$ gives the following intervals for $F_0(z_p)$, with the endpoints multiplied by $10^6$:
 \[
 \setlength{\arraycolsep}{3pt}
 \begin{array}{c|cccccccc|c}
@@ -109,7 +118,7 @@ e & 000 & 007 & 070 & 077 & 700 & 707 & 770 & 777 & z_*\\\hline
 \text{upper} & 4000000 & 2202908 & 2000000 & 2647949 & 2000000 & 1969501 & 2370470 & 1400970 & 1321553
 \end{array}
 \]
-In closed form, the smallest of the eight values is $F_0(-x)=F_0(z_{(7,7,7)})=-(c_1+c_2+2c_3)$, attained at $j=1$ and $j=6$, and this equals $\tfrac12-c_3$ because $c_1+c_2+c_3=-\tfrac12$. For $z_*$ the seven sums at $j=0,\dots,6$ are
+The column $e_1e_2e_3$ is the sign flip $z_e$, so that $007$ stands for $e=(0,0,7)$, and the last column is $z_*$. In closed form, the smallest of the eight values is $F_0(-x)=F_0(z_{(7,7,7)})=-(c_1+c_2+2c_3)$, attained at $j=1$ and $j=6$, and this equals $\tfrac12-c_3$ because $c_1+c_2+c_3=-\tfrac12$. For $z_*$ the seven sums at $j=0,\dots,6$ are
 \[
 1-c_1+2c_2,\quad 2c_1,\quad c_2+c_3,\quad 2-c_2+c_3,\quad 3c_3-1,\quad 2c_1,\quad c_1+2c_2-c_3 ,
 \]
@@ -117,21 +126,19 @@ and the largest is $F_0(z_*)=2-c_2+c_3$, at $j=3$. The left side of~\eqref{eq:ga
 \end{proof}
 
 \begin{proof}[Proof of Corollary~\ref{cor:count}]
-Write $\mathcal L(z)=\mathcal L(z;x,\tau)$. The parametrization $p\mapsto z_p$ identifies $\mathcal M_x$ with a three-torus, so $\mathcal M_x$ is compact and the smooth function $\mathcal L(\,\cdot\,;x,\tau)$ attains its maximum at some $y$, which is critical. By Theorem~\ref{thm:main}, $\mathcal L(y)\ge\mathcal L(z_*)>\mathcal L(z')$ for every sign point $z'$, so $y$ is not a shift of a sign point.
+Write $\mathcal L(z)=\mathcal L(z;x,\tau)$. The parametrization $p\mapsto z_p$ identifies $\mathcal M_x$ with a three-torus, so $\mathcal M_x$ is compact and the smooth function $\mathcal L(\,\cdot\,;x,\tau)$ attains its maximum at some $y$, which is critical. By Theorem~\ref{thm:main}, $\mathcal L(y)\ge\mathcal L(z_*)>\mathcal L(z')$ for every sign flip $z'$, so $y$ is not a shift of a sign flip.
 
 Let $Q$ be the reflection $(Qz)(t)=z(-t\bmod 7)$, the flipping operator of the proof of~\cite[Proposition~3.7]{SSA24}. Then $Q$ preserves $\mathcal M_x$, $QR_j=R_{-j}Q$, $Qx=x$ because $x$ is a sum of cosines in $t$, and $Q\epsilon$ has the law of $\epsilon$. Hence $\langle R_j(x+\tau\epsilon),Qz\rangle=\langle R_{-j}(x+\tau Q\epsilon),z\rangle$ and $\mathcal L(Qz)=\mathcal L(z)$. So $Qy$ is also a global maximizer and is critical.
 
-Suppose $Qy=R_jy$. Since $7$ is odd there is $h$ with $2h\equiv j\pmod 7$, and $v=R_hy$ satisfies $Qv=R_{-h}Qy=R_{j-h}y=v$. A real vector fixed by $Q$ has real Fourier coefficients, so $\widehat v(k)=\pm|\widehat x(k)|=\pm\widehat x(k)$ for each $k$, and $v$ is a sign point, which is impossible. Therefore $y$ and $Qy$ are not shifts of each other, and neither is a shift of a sign point. Since $7$ is prime and $x$ is not constant, $x$ is not fixed by a nontrivial shift, so~\cite[Proposition~3.7]{SSA24} applies: the eight sign points are critical, and no two of them are shifts of each other. This gives ten.
+Suppose $Qy=R_jy$. Since $7$ is odd there is $h$ with $2h\equiv j\pmod 7$, and $v=R_hy$ satisfies $Qv=R_{-h}Qy=R_{j-h}y=v$. A real vector fixed by $Q$ has real Fourier coefficients, so $\widehat v(k)=\pm|\widehat x(k)|=\pm\widehat x(k)$ for each $k$, and $v$ is a sign flip, which is impossible. Therefore $y$ and $Qy$ are not shifts of each other, and neither is a shift of a sign flip. Since $7$ is prime and $x$ is not constant, $x$ is not fixed by a nontrivial shift, so~\cite[Proposition~3.7]{SSA24} applies: the eight sign flips are critical, and no two of them are shifts of each other. This gives ten.
 \end{proof}
 
-\section{Remarks}\label{sec:remarks}
-
-\begin{remark}[An example with integer entries]
-Let $u=(0,1,0,2,0,2,1)$, $\tilde x=7u-6\cdot\mathbf 1$ with $\mathbf 1=(1,\dots,1)$, and $\tilde z=Q\tilde x$. Then $\tilde x$ has mean zero, and $Q$ preserves the mean and the power spectrum, so $\tilde z\in\mathcal M_{\tilde x}$. A direct computation gives $\|\tilde x\|^2=238$, $F_0(-\tilde x)=154$ and $F_0(\tilde z)=140$, where $F_\tau$ is formed with $\tilde x$ in place of $x$. By Lemma~\ref{lem:score}, $F_\tau(\tilde z)\le 140+\tau\sqrt{7\cdot238}<154\le F_\tau(-\tilde x)$ whenever $\tau\le1/4$, since $\sqrt{1666}<56$. So $\tilde z$ has larger loss than $-\tilde x$ for these $\tau$, and $-\tilde x$ is not a global maximizer.
+\begin{remark}[An example with integer entries]\label{rem:integer}
+Let $u=(0,1,0,2,0,2,1)$, $\tilde x=7u-6\cdot\mathbf 1$ with $\mathbf 1=(1,\dots,1)$, and $\tilde z=Q\tilde x$. Then $\tilde x$ has mean zero, and $Q$ preserves the mean and the power spectrum, so $\tilde z\in\mathcal M_{\tilde x}$. A direct computation gives $\|\tilde x\|^2=238$, $F_0(-\tilde x)=154$ and $F_0(\tilde z)=140$, where $F_\tau$ is formed with $\tilde x$ in place of $x$. By Lemma~\ref{lem:score}, $F_\tau(\tilde z)\le 140+\tau\sqrt{7\cdot238}<154\le F_\tau(-\tilde x)$ whenever $\tau\le1/4$, since $\sqrt{1666}<56$. So $\tilde z$ has larger loss than $-\tilde x$ for these $\tau$, and $-\tilde x$ is not a global maximizer. Here $1/4>\|\tilde x\|/62$, against $\|x\|/200$ in Theorem~\ref{thm:main}; the comparison is with $-\tilde x$ only, not with the other sign flips of $\tilde x$.
 \end{remark}
 
-\begin{remark}[Larger noise]
-For the signal of Theorem~\ref{thm:main}, Monte Carlo averages over $2\cdot10^5$ noise samples, the same samples for every $z$, give $F_\tau(z_*)=1.4581$ with standard error $0.0003$ against $\min_eF_\tau(z_e)=1.5124$ at $\tau=1/10$, so numerically the inequality of Theorem~\ref{thm:main} still holds there. At $\tau=3/10$ the order is reversed: $F_\tau(z_*)=1.8773$ with standard error $0.0009$, against $1.8157$.
+\begin{remark}[Larger noise]\label{rem:noise}
+For the signal of Theorem~\ref{thm:main}, Monte Carlo averages over $2\cdot10^5$ noise samples, the same samples for every $z$, give $F_\tau(z_*)=1.4581$ against $\min_eF_\tau(z_e)=1.5124$ at $\tau=1/10$; the difference $\min_eF_\tau(z_e)-F_\tau(z_*)$ is $0.0543$ with standard error $0.0002$, so numerically the inequality of Theorem~\ref{thm:main} still holds there. At $\tau=3/10$ the order is reversed: $F_\tau(z_*)=1.8773$ against $\min_eF_\tau(z_e)=1.8157$, a difference of $-0.0616$ with standard error $0.0007$, so there $z_*$ has smaller loss than one of the sign flips. Whether $-x$ maximizes $\mathcal L(\,\cdot\,;x,3/10)$ is open.
 \end{remark}
 
 \section*{Acknowledgments and funding}
@@ -143,10 +150,10 @@ This work was done by multiple AI agents, Claude (Anthropic) and Codex (OpenAI),
 The author holds equity in Heights Labs and in Convex Nexus Capital and has a management role at Convex Nexus Capital. These entities are included in the funding declaration above.
 
 \section*{Code and data availability}
-The \LaTeX\ source and two programs with their outputs are available at \url{https://github.com/yspennstate/mra-phase-manifold-critical-points}. The program \texttt{check\_counterexample.py} verifies the intervals in the proof of Theorem~\ref{thm:main} and the integer example in exact rational arithmetic. The seeded program \texttt{monte\_carlo.py} gives the Monte Carlo averages in the remark on larger noise.
+The \LaTeX\ source and two programs with their outputs are available at \url{https://github.com/yspennstate/mra-phase-manifold-critical-points}. The program \texttt{check\_counterexample.py} verifies the intervals in the proof of Theorem~\ref{thm:main} and the integer example of Remark~\ref{rem:integer} in exact rational arithmetic. The seeded program \texttt{monte\_carlo.py} gives the averages of Remark~\ref{rem:noise}.
 
 \section*{Declaration of generative AI and AI-assisted technologies}
-Codex (OpenAI) produced the signal of Theorem~\ref{thm:main}, the intervals in its proof, the integer example and the argument of Corollary~\ref{cor:count}. Claude (Anthropic) recomputed every value of $F_0$ with an independent implementation, ran the Monte Carlo computations, checked the proofs and the citations, and wrote the text. The problem, the phase manifold, the loss, the reflection $Q$ and Proposition~3.7 of~\cite{SSA24} are due to Shahverdi, Str\"om and And\'en, and the scaling identity used after Corollary~\ref{cor:count} is their Lemma~2.10. Theorem~\ref{thm:main}, Corollary~\ref{cor:count} and the integer example are new. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+Codex (OpenAI) produced the signal of Theorem~\ref{thm:main}, the intervals in its proof, the integer example and the argument of Corollary~\ref{cor:count}. Claude (Anthropic) recomputed every value of $F_0$ with an independent implementation, ran the Monte Carlo computations, checked the proofs and the citations, produced the extension to every true signal on $\mathcal M_x$ by circulant rotations, and wrote the text. The problem, the phase manifold, the loss, the reflection $Q$, Lemma~3.1, Remark~2.3 and Proposition~3.7 of~\cite{SSA24} are due to Shahverdi, Str\"om and And\'en, and the scaling identity used after Corollary~\ref{cor:count} is their Lemma~2.10. Theorem~\ref{thm:main}, Corollary~\ref{cor:count} and the integer example are new. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \begin{thebibliography}{99}
 

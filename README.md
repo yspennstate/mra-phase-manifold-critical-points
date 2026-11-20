@@ -4,9 +4,9 @@ Yitzchak Shmalo
 
 Shahverdi, Ström and Andén (arXiv:2409.04868) restrict the expected template-alignment loss of multireference
 alignment to the signals with the power spectrum of the true signal, and conjecture (Conjecture 3.8) that for signals
-of odd length the only critical points are the sign points, with the negative of the true signal as the global
-maximum. This note gives a signal of length seven for which, at every noise standard deviation up to 1/100, another
-signal on the same torus has larger loss than every sign point. The loss then has at least ten critical orbits under
+of odd length the only critical points are the sign flips, with the negative of the true signal as the global
+maximizer. This note gives a signal of length seven for which, at every noise level up to 1/100, another
+signal on the same phase manifold has larger loss than every sign flip. The loss then has at least ten critical points up to
 cyclic shifts, where the conjecture predicts eight, and by rescaling the conjecture fails at every positive noise
 level.
 
