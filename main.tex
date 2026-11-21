@@ -26,7 +26,7 @@ Jerusalem, Givat Ram,}\\
 \maketitle
 
 \begin{abstract}
-Multireference alignment recovers a signal from noisy, cyclically shifted copies. Moment-constrained alignment, introduced by Shahverdi, Str\"om and And\'en, alternates template alignment with the projection onto the signals with the power spectrum of the true signal. Its loss is the limit of the iteration's loss as the number of observations grows. The sign flips of the true signal, the signals with its Fourier coefficients up to signs, are critical points of this loss, and Shahverdi, Str\"om and And\'en conjecture that for odd length there are no others. We give a true signal $x$ of length seven and a signal $z_*$ with the same power spectrum whose loss exceeds that of every sign flip of $x$ at every noise level up to $1/100$. The loss then has at least ten critical points up to cyclic shifts, where the conjecture predicts eight. By rescaling, the conjecture fails at every positive noise level.
+Multireference alignment recovers a signal from noisy, cyclically shifted copies. Moment-constrained alignment, introduced by Shahverdi, Str\"om and And\'en, alternates template alignment with the projection onto the signals with the power spectrum of the true signal. Its loss is the limit, as the number of observations grows, of half the mean squared distance from the template to the aligned observations. The sign flips of the true signal, the signals whose Fourier coefficients agree with those of the true signal up to sign, are critical points of this loss, and Shahverdi, Str\"om and And\'en conjecture that for odd length there are no others. We give a true signal $x$ of length seven and a signal $z_*$ with the same power spectrum whose loss exceeds that of every sign flip of $x$ at every noise level up to $1/100$. The loss then has at least ten critical points up to cyclic shifts, where the conjecture predicts eight. By rescaling, the conjecture fails at every positive noise level.
 \end{abstract}
 
 \noindent\textit{Keywords:} multireference alignment, method of moments, power spectrum, phase manifold, critical points.
@@ -47,7 +47,7 @@ Template alignment replaces a template $z$ by the average of the aligned observa
 \[
 \mathcal L_N(z)=\frac1{2N}\sum_{i=1}^N\bigl\|z-\sigma(z;\xi_i)\bigr\|^2
 \]
-of~\cite[(2.7)]{SSA24}. Up to an additive constant and the factor $N/\tau^2$, $\mathcal L_N$ is the negative log-likelihood of the signal and the shifts jointly, minimized over the shifts~\cite[Sections~1 and~4]{SSA24}. Fan, Sun, Wang and Wu treat the likelihood in which the shifts are integrated out, and their theorems do not apply to the limit of $\mathcal L_N$ as $N\to\infty$~\cite[(2.9)]{SSA24}. This limit is the \emph{moment-constrained alignment loss}, called the loss below. With $\epsilon$ a standard Gaussian vector in $\R^L$, it is~\cite[(2.11)]{SSA24}
+of~\cite[(2.7)]{SSA24}. Up to an additive constant and the factor $N/\tau^2$, $\mathcal L_N$ is the negative log-likelihood of the signal and the shifts jointly, minimized over the shifts~\cite[Sections~1 and~4]{SSA24}. Fan, Sun, Wang and Wu treat the likelihood in which the shifts are integrated out, and their theorems do not apply to the limit of $\mathcal L_N$ as $N\to\infty$~\cite[(2.9)]{SSA24}. This limit, the expected loss function of~\cite[Definition~2.8]{SSA24}, is the \emph{moment-constrained alignment loss}, called the loss below. With $\epsilon$ a standard Gaussian vector in $\R^L$, it is~\cite[(2.11)]{SSA24}
 \[
 \mathcal L(z;x,\tau)=\E\,\tfrac12\bigl\|z-\sigma(z;x+\tau\epsilon)\bigr\|^2 .
 \]
