@@ -12,6 +12,8 @@
 \newtheorem{remark}[theorem]{Remark}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
 \setlength{\emergencystretch}{3em}
 
 \title{The moment-constrained alignment loss has critical points beyond the sign flips}
@@ -26,7 +28,7 @@ Jerusalem, Givat Ram,}\\
 \maketitle
 
 \begin{abstract}
-Multireference alignment recovers a signal from noisy, cyclically shifted copies. Moment-constrained alignment, introduced by Shahverdi, Str\"om and And\'en, alternates template alignment with the projection onto the signals with the power spectrum of the true signal. Its loss is the limit, as the number of observations grows, of half the mean squared distance from the template to the aligned observations. The sign flips of the true signal, the signals whose Fourier coefficients agree with those of the true signal up to sign, are critical points of this loss, and Shahverdi, Str\"om and And\'en conjecture that for odd length there are no others. We give a true signal $x$ of length seven and a signal $z_*$ with the same power spectrum whose loss exceeds that of every sign flip of $x$ at every noise level up to $1/100$. The loss then has at least ten critical points up to cyclic shifts, where the conjecture predicts eight. By rescaling, the conjecture fails at every positive noise level.
+Multireference alignment recovers a signal from noisy, cyclically shifted copies. Moment-constrained alignment, introduced by Shahverdi, Str\"om and And\'en, alternates template alignment with the projection onto the signals with the power spectrum of the true signal. Its loss is the limit, as the number of observations grows, of half the mean squared distance from the template to the aligned observations. The sign flips of the true signal, the signals whose Fourier coefficients agree with those of the true signal up to sign, are critical points of this loss, and Shahverdi, Str\"om and And\'en conjecture that for odd length there are no others. We give a true signal $x$ of length seven and a signal $z_*$ with the same power spectrum whose loss exceeds that of every sign flip of $x$ at every noise level up to $1/100$. The loss then has at least ten critical points up to cyclic shifts, where the conjecture predicts eight. By rescaling, the conjecture fails at every positive noise level. For length three, where the phase manifold is a circle, we prove the conjecture.
 \end{abstract}
 
 \noindent\textit{Keywords:} multireference alignment, method of moments, power spectrum, phase manifold, critical points.
@@ -87,7 +89,13 @@ For $x$ as in Theorem~\ref{thm:main} and $0<\tau\le1/100$, the loss $\mathcal L(
 
 Since $\mathcal L(\lambda z;\lambda x,\lambda\tau)=\lambda^2\mathcal L(z;x,\tau)$ for $\lambda>0$, which follows from~\cite[Lemma~2.10(i)]{SSA24}, the signal $\lambda x$ with $\lambda\ge100\tau$ is a counterexample at noise level $\tau$, so Conjecture~\ref{conj} fails at every $\tau>0$. Here $\|x\|=2$, so the theorem covers noise levels up to $\|x\|/200$. Corollary~\ref{cor:open} gives, for each $\tau>0$, an open set of signals of length seven for which the conjecture fails.
 
-Whether $x$ is the global minimizer of the loss, and whether the sign flips other than $\pm x$ are saddle points, remains open. We do not know whether the conjecture holds for $L=3$, where $\mathcal M_x$ is a circle, or for $L=5$.
+Whether $x$ is the global minimizer of the loss, and whether the sign flips other than $\pm x$ are saddle points, remains open. For $L=3$, where $\mathcal M_x$ is a circle, the conjecture holds.
+
+\begin{theorem}\label{thm:three}
+Let $x\in\R^3$ be nonzero with mean zero and let $\tau>0$. Up to cyclic shifts, the only critical points of $\mathcal L(\,\cdot\,;x,\tau)$ on $\mathcal M_x$ are $x$ and $-x$. The shifts of $x$ are its global minimizers and the shifts of $-x$ its global maximizers. In particular Conjecture~\ref{conj} holds for $L=3$.
+\end{theorem}
+
+For $L=3$ the point $x$ is a local minimizer by~\cite[Theorem~3.9]{SSA24}, and Theorem~\ref{thm:three} adds the global statement and the absence of other critical points. We do not know whether the conjecture holds for $L=5$.
 
 \section{Proofs and remarks}\label{sec:proof}
 
@@ -140,6 +148,35 @@ For every $\tau>0$ there is a nonempty open subset $U_\tau$ of the hyperplane $\
 Let $w$ range over $(0,\infty)^3$ in the definition of $z_p$ and write $x_w=z_{(0,0,0)}$; in this proof $F_0(z)$ stands for $F_0(z;x_w)$. As in the proof of Theorem~\ref{thm:main}, the sign flips of $x_w$ are the $z_e$, $e\in\{0,7\}^3$, and $\|x_w\|=(w_1+w_2+w_3)^{1/2}$. The numbers $F_0(z_e)$, $F_0(z_{(0,5,10)})$ and $\|x_w\|$ are continuous in $w$, and $\min_eF_0(z_e)-F_0(z_{(0,5,10)})>\|x_w\|\sqrt7/100$ at $w=(1,1,2)$ by~\eqref{eq:gap}. Let $W$ be an open neighbourhood of $(1,1,2)$ in $(0,\infty)^3$ on which this inequality holds. For $w\in W$ the proofs of Theorem~\ref{thm:main} and Corollary~\ref{cor:count} apply with $2$ replaced by $\|x_w\|$ and give both conclusions for $x_w$ and $0<\tau\le1/100$. A circulant special orthogonal matrix $C$ commutes with the shifts and multiplies the $k$th Fourier coefficient by a complex number of modulus one. It therefore maps $\mathcal M_{x_w}$ onto itself, and $\mathcal L(Cz;Cx_w,\tau)=\mathcal L(z;x_w,\tau)$ by~\cite[Lemma~3.1]{SSA24}, so $z\mapsto Cz$ carries the critical points and the maximizers of $\mathcal L(\,\cdot\,;x_w,\tau)$ to those of $\mathcal L(\,\cdot\,;Cx_w,\tau)$ and preserves the relation of being a shift. These matrices act transitively on $\mathcal M_{x_w}$~\cite[Remark~2.3]{SSA24}. Hence both conclusions hold, for $0<\tau\le1/100$, for every $x$ of mean zero with $\bigl(\tfrac27|\widehat x(k)|^2\bigr)_{k=1,2,3}\in W$. By the scaling identity above, which follows from~\cite[Lemma~2.10(i)]{SSA24}, they hold at noise level $\tau$ for $\lambda x$ with $\lambda=100\tau$. The set $U_\tau$ of these $\lambda x$ is the preimage of $W$ under the continuous map $x\mapsto\bigl(\tfrac{2}{7\lambda^2}|\widehat x(k)|^2\bigr)_{k=1,2,3}$ on the hyperplane. It is open, and it contains $\lambda z_{(0,0,0)}$ for $w=(1,1,2)$.
 \end{proof}
 
+\begin{proof}[Proof of Theorem~\ref{thm:three}]
+Let $H=\{z\in\R^3:\sum_tz(t)=0\}$. For $z\in H$, Parseval gives $\|z\|^2=\tfrac23|\widehat z(1)|^2$ and $|\widehat z(2)|=|\widehat z(1)|$, so $\mathcal M_x$ is the circle of radius $r=\|x\|$ in $H$. The shift $R_1$ restricts to an orthogonal map of $H$ of order three with no nonzero fixed vector and determinant one, hence to a rotation by $\pm2\pi/3$. Choose an orientation-preserving linear isometry $\iota\colon H\to\C$ with $\iota(x)=r$, and put $\rho=e^{2\pi\mathrm i/3}$. Then $\{\iota R_j\iota^{-1}\}_{j}$ is the set of multiplications by $1,\rho,\rho^2$, and $\langle u,v\rangle=\operatorname{Re}\bigl(\iota(u)\overline{\iota(v)}\bigr)$ for $u,v\in H$. Put $z_\varphi=\iota^{-1}(re^{\mathrm i\varphi})$, so that $\varphi\mapsto z_\varphi$ is a diffeomorphism from $\R/2\pi\Z$ onto $\mathcal M_x$ with $z_0=x$.
+
+Write $\epsilon=\epsilon_H+\epsilon_c$ with $\epsilon_H\in H$ and $\epsilon_c$ constant. The shifts fix constant vectors, and $z_\varphi$ is orthogonal to them, so $\langle R_j(x+\tau\epsilon),z_\varphi\rangle=\langle R_j(x+\tau\epsilon_H),z_\varphi\rangle$. The variable $\zeta=\iota(x+\tau\epsilon_H)$ is Gaussian in $\C=\R^2$ with mean $r$ and covariance $\tau^2I_2$. Writing $\zeta=|\zeta|e^{\mathrm i\Theta}$ and $h(u)=\max_{0\le j\le2}\cos(u+2\pi j/3)$,
+\[
+F_\tau(z_\varphi)=r\,\E\bigl[|\zeta|\,h(\Theta-\varphi)\bigr]=r\int_{-\pi}^{\pi}h(\psi-\varphi)f(\psi)\,d\psi ,
+\]
+where, in polar coordinates and with $\kappa=r/\tau$,
+\[
+f(\psi)=\frac{\tau e^{-\kappa^2/2}}{2\pi}\,G(\kappa\cos\psi),\qquad G(a)=\int_0^\infty s^2e^{-s^2/2+as}\,ds .
+\]
+The function $h$ is even, has period $2\pi/3$, equals $\cos u$ for $|u|\le\pi/3$, and takes values in $[1/2,1]$. Let $T=\R/(2\pi/3)\Z$ and $\nu(\psi)=\sum_{j=0}^2f(\psi+2\pi j/3)$. Then $F_\tau(z_\varphi)=r\int_Th(\psi-\varphi)\nu(\psi)\,d\psi$, and $\nu$ is smooth and even.
+
+First, $\nu$ is strictly decreasing on $(0,\pi/3)$. Fix $\psi$ in this interval and put $\alpha_j=\sin(\psi+2\pi j/3)$ and $\beta_j=\cos(\psi+2\pi j/3)$. Then $\alpha_0,\alpha_1>0$, $\alpha_2=-\alpha_0-\alpha_1$ and $\beta_0>\beta_2>\beta_1$. The sum-to-product formulas give $\beta_0-\beta_2=\sqrt3\,\alpha_1$ and $\beta_2-\beta_1=\sqrt3\,\alpha_0$. With $D(a,b)=(G'(b)-G'(a))/(b-a)$,
+\begin{align*}
+\sum_{j=0}^2\alpha_jG'(\kappa \beta_j)&=\alpha_0\bigl(G'(\kappa \beta_0)-G'(\kappa \beta_2)\bigr)-\alpha_1\bigl(G'(\kappa \beta_2)-G'(\kappa \beta_1)\bigr)\\
+&=\sqrt3\,\kappa\,\alpha_0\alpha_1\bigl(D(\kappa \beta_2,\kappa \beta_0)-D(\kappa \beta_1,\kappa \beta_2)\bigr).
+\end{align*}
+Since $G'''(a)=\int_0^\infty s^5e^{-s^2/2+as}\,ds>0$, the function $G'$ is strictly convex, and the right side is positive. Hence $\nu'(\psi)=-\tfrac{\tau\kappa e^{-\kappa^2/2}}{2\pi}\sum_j\alpha_jG'(\kappa \beta_j)<0$.
+
+So $\nu(\psi)$ is a strictly decreasing function of the distance $d(\psi)$ from $\psi$ to $(2\pi/3)\Z$, which lies in $[0,\pi/3]$. For $t\in(1/2,1)$ the set $\{h>t\}\subset T$ is the arc $(-\ell_t,\ell_t)$ with $\ell_t=\arccos t\in(0,\pi/3)$, and the layer cake formula gives
+\[
+\frac{F_\tau(z_\varphi)}{r}=\frac12\int_T\nu+\int_{1/2}^1A(\varphi,\ell_t)\,dt,\qquad A(\varphi,\ell)=\int_{\varphi-\ell}^{\varphi+\ell}\nu(\psi)\,d\psi .
+\]
+Let $0<\varphi<\pi/3$ and $0<\ell<\pi/3$. Then $d(\varphi-\ell)=|\varphi-\ell|$ and $d(\varphi+\ell)=\min(\varphi+\ell,2\pi/3-\varphi-\ell)$. Both entries of the minimum exceed $|\varphi-\ell|$, the second because $\max(\varphi,\ell)<\pi/3$. Hence $\partial_\varphi A(\varphi,\ell)=\nu(\varphi+\ell)-\nu(\varphi-\ell)<0$, and $\partial_\varphi A$ is bounded. Differentiating under the integral gives $\frac{d}{d\varphi}F_\tau(z_\varphi)<0$ on $(0,\pi/3)$.
+
+The function $\varphi\mapsto F_\tau(z_\varphi)$ is even and has period $2\pi/3$, because $\nu$ and $h$ are even and $h$ has that period. It is therefore strictly increasing on $(-\pi/3,0)$, and on $\R/2\pi\Z$ its critical points are the $\varphi\in(\pi/3)\Z$. Its maxima are at $\varphi\in(2\pi/3)\Z$, where $z_\varphi$ is a shift of $x$. Its minima are at $\varphi\in\pi/3+(2\pi/3)\Z$, where $z_\varphi$ is a shift of $z_\pi=-x$. By~\eqref{eq:sandwich}, $\mathcal L(z_\varphi;x,\tau)$ is a constant minus $F_\tau(z_\varphi)$, and this gives the theorem.
+\end{proof}
+
 \begin{remark}[An example with integer entries]\label{rem:integer}
 Let $u=(0,1,0,2,0,2,1)$, $\tilde x=7u-6\cdot\mathbf 1$ with $\mathbf 1=(1,\dots,1)$, and $\tilde z=Q\tilde x$. Then $\tilde x$ has mean zero, and $Q$ preserves the mean and the power spectrum, so $\tilde z\in\mathcal M_{\tilde x}$. Write $F_\tau(z)$ for $F_\tau(z;\tilde x)$. A direct computation gives $\|\tilde x\|^2=238$, $F_0(-\tilde x)=154$ and $F_0(\tilde z)=140$. By Lemma~\ref{lem:score}, $F_\tau(\tilde z)\le 140+\tau\sqrt{7\cdot238}<154\le F_\tau(-\tilde x)$ whenever $\tau\le1/4$, since $\sqrt{1666}<56$. So $\tilde z$ has larger loss than $-\tilde x$ for these $\tau$, and $-\tilde x$ is not a global maximizer. For the sign flips of $\tilde x$ the values of $F_0$, enclosed in rational intervals by the program \texttt{check\_counterexample.py}, all exceed $141.96$; the smallest, about $141.970$, belongs to the sign flip with $\widehat z(k)=-\widehat{\tilde x}(k)$ for $k=1,2$ and $\widehat z(3)=\widehat{\tilde x}(3)$. Since $\sqrt{1666}/21<1.95$, Lemma~\ref{lem:score} gives $F_\tau(\tilde z)<141.95<F_\tau(z)$ for every sign flip $z$ of $\tilde x$ when $\tau\le1/21$, so for these $\tau$ the loss of $\tilde z$ is larger than that of every sign flip of $\tilde x$.
 \end{remark}
@@ -160,7 +197,7 @@ The author holds equity in Heights Labs and in Convex Nexus Capital and has a ma
 The \LaTeX\ source and two programs with their outputs are available at \url{https://github.com/yspennstate/mra-phase-manifold-critical-points}. The program \texttt{check\_counterexample.py} verifies the intervals in the proof of Theorem~\ref{thm:main} and the integer example of Remark~\ref{rem:integer} in exact rational arithmetic. The seeded program \texttt{monte\_carlo.py} gives the averages of Remark~\ref{rem:noise}.
 
 \section*{Declaration of generative AI and AI-assisted technologies}
-Codex (OpenAI) produced the signal of Theorem~\ref{thm:main}, the intervals in its proof, the integer example and the argument of Corollary~\ref{cor:count}. Claude (Anthropic) recomputed every value of $F_0$ independently, ran the Monte Carlo computations, checked the proofs and the citations, produced the extension by circulant special orthogonal matrices, and wrote the text. The problem, the phase manifold, the loss and the results of~\cite{SSA24} used here are due to Shahverdi, Str\"om and And\'en. Theorem~\ref{thm:main}, Corollaries~\ref{cor:count} and~\ref{cor:open} and the integer example are new. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+Codex (OpenAI) produced the signal of Theorem~\ref{thm:main}, the intervals in its proof, the integer example and the argument of Corollary~\ref{cor:count}. Claude (Anthropic) recomputed every value of $F_0$ independently, ran the Monte Carlo computations, checked the proofs and the citations, produced the extension by circulant special orthogonal matrices and the proof of Theorem~\ref{thm:three}, and wrote the text. The problem, the phase manifold, the loss and the results of~\cite{SSA24} used here are due to Shahverdi, Str\"om and And\'en. Theorems~\ref{thm:main} and~\ref{thm:three}, Corollaries~\ref{cor:count} and~\ref{cor:open} and the integer example are new. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \begin{thebibliography}{99}
 
