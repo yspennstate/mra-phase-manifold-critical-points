@@ -79,4 +79,39 @@ assert max(dot(xi, [-a for a in xi], j) for j in range(7)) == 154 and max(dot(xi
 assert 56 ** 2 > 7 * 238  # sqrt(1666) < 56
 print('integer example: |x|^2 =', sum(a * a for a in xi), ' F0(-x) =', max(dot(xi, [-a for a in xi], j) for j in range(7)),
       ' F0(z) =', max(dot(xi, zi, j) for j in range(7)))
+# every sign flip of the integer example: z_e = sum_k e_k P_k x, where P_k x(t) = (2/7) sum_s x(s) cos(2 k (t - s) pi / 7)
+def imul(c, ab):
+    return (c * ab[0], c * ab[1]) if c >= 0 else (c * ab[1], c * ab[0])
+
+
+def flip_enc(e):
+    best = None
+    for j in range(7):
+        lo = hi = Q(0)
+        for k in range(3):
+            for t in range(7):
+                for s_ in range(7):
+                    a, b = imul(e[k] * xi[(t + j) % 7] * xi[s_], cos_enc(2 * (k + 1) * (t - s_)))
+                    lo += Q(2, 7) * a
+                    hi += Q(2, 7) * b
+        best = (lo, hi) if best is None else (max(best[0], lo), max(best[1], hi))
+    return best
+
+
+def flip_float(e):
+    z = [sum(e[k] * 2 / 7 * sum(xi[s_] * math.cos(2 * (k + 1) * (t - s_) * math.pi / 7) for s_ in range(7)) for k in range(3))
+         for t in range(7)]
+    return max(dot(xi, z, j) for j in range(7)), sum(v * v for v in z)
+
+
+flo = []
+for e in itertools.product((1, -1), repeat=3):
+    lo, hi = flip_enc(e)
+    fl, nrm = flip_float(e)
+    assert lo <= Q(fl) + Q(1, 10 ** 9) and Q(fl) - Q(1, 10 ** 9) <= hi and abs(nrm - 238) < 1e-9
+    flo.append(lo)
+    print('sign flip', e, ' F0 in [%.6f, %.6f]  float %.9f  |z|^2 %.9f' % (lo, hi, fl, nrm))
+m = min(flo)
+assert m > 140 and (21 * (m - 140)) ** 2 > 1666  # min_e F0 > 140 + sqrt(1666)/21
+print('min over sign flips F0 >= %.6f > 140 + sqrt(1666)/21 = %.6f' % (m, 140 + math.sqrt(1666) / 21))
 print('ALL CHECKS PASS')
