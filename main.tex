@@ -28,7 +28,7 @@ Jerusalem, Givat Ram,}\\
 \maketitle
 
 \begin{abstract}
-Multireference alignment recovers a signal from noisy, cyclically shifted copies. Moment-constrained alignment, introduced by Shahverdi, Str\"om and And\'en, alternates template alignment with the projection onto the signals with the power spectrum of the true signal. Its loss is the limit, as the number of observations grows, of half the mean squared distance from the template to the aligned observations. The sign flips of the true signal, the signals whose Fourier coefficients agree with those of the true signal up to sign, are critical points of this loss, and Shahverdi, Str\"om and And\'en conjecture that for odd length there are no others. We give a true signal $x$ of length seven and a signal $z_*$ with the same power spectrum whose loss exceeds that of every sign flip of $x$ at every noise level up to $1/100$. The loss then has at least ten critical points up to cyclic shifts, where the conjecture predicts eight. By rescaling, the conjecture fails at every positive noise level. For length three, where the phase manifold is a circle, we prove the conjecture.
+Multireference alignment recovers a signal from noisy, cyclically shifted copies. Moment-constrained alignment, introduced by Shahverdi, Str\"om and And\'en, alternates template alignment with the projection onto the signals with the power spectrum of the true signal. The sign flips of the true signal, the signals whose Fourier coefficients agree with those of the true signal up to sign, are critical points of its loss, and Shahverdi, Str\"om and And\'en conjecture that for odd length there are no others. We give a true signal $x$ of length seven and a signal $z_*$ with the same power spectrum whose loss exceeds that of every sign flip of $x$ at every noise level up to $1/100$. The loss then has at least ten critical points up to cyclic shifts, where the conjecture predicts eight. By rescaling, the conjecture fails at every positive noise level. For length three, where the phase manifold is a circle, we prove the conjecture.
 \end{abstract}
 
 \noindent\textit{Keywords:} multireference alignment, method of moments, power spectrum, phase manifold, critical points.
@@ -157,7 +157,7 @@ F_\tau(z_\varphi)=r\,\E\bigl[|\zeta|\,h(\Theta-\varphi)\bigr]=r\int_{-\pi}^{\pi}
 \]
 where, in polar coordinates and with $\kappa=r/\tau$,
 \[
-f(\psi)=\frac{\tau e^{-\kappa^2/2}}{2\pi}\,G(\kappa\cos\psi),\qquad G(a)=\int_0^\infty s^2e^{-s^2/2+as}\,ds .
+f(\psi)=\frac{\tau e^{-\kappa^2/2}}{2\pi}\,G(\kappa\cos\psi),\qquad G(a)=\int_0^\infty y^2e^{-y^2/2+ay}\,dy .
 \]
 The function $h$ is even, has period $2\pi/3$, equals $\cos u$ for $|u|\le\pi/3$, and takes values in $[1/2,1]$. Let $T=\R/(2\pi/3)\Z$ and $\nu(\psi)=\sum_{j=0}^2f(\psi+2\pi j/3)$. Then $F_\tau(z_\varphi)=r\int_Th(\psi-\varphi)\nu(\psi)\,d\psi$, and $\nu$ is smooth and even.
 
@@ -166,15 +166,15 @@ First, $\nu$ is strictly decreasing on $(0,\pi/3)$. Fix $\psi$ in this interval 
 \sum_{j=0}^2\alpha_jG'(\kappa \beta_j)&=\alpha_0\bigl(G'(\kappa \beta_0)-G'(\kappa \beta_2)\bigr)-\alpha_1\bigl(G'(\kappa \beta_2)-G'(\kappa \beta_1)\bigr)\\
 &=\sqrt3\,\kappa\,\alpha_0\alpha_1\bigl(D(\kappa \beta_2,\kappa \beta_0)-D(\kappa \beta_1,\kappa \beta_2)\bigr).
 \end{align*}
-Since $G'''(a)=\int_0^\infty s^5e^{-s^2/2+as}\,ds>0$, the function $G'$ is strictly convex, and the right side is positive. Hence $\nu'(\psi)=-\tfrac{\tau\kappa e^{-\kappa^2/2}}{2\pi}\sum_j\alpha_jG'(\kappa \beta_j)<0$.
+Since $G'''(a)=\int_0^\infty y^5e^{-y^2/2+ay}\,dy>0$, the function $G'$ is strictly convex, and the right side is positive. Hence $\nu'(\psi)=-\tfrac{\tau\kappa e^{-\kappa^2/2}}{2\pi}\sum_j\alpha_jG'(\kappa \beta_j)<0$.
 
-So $\nu(\psi)$ is a strictly decreasing function of the distance $d(\psi)$ from $\psi$ to $(2\pi/3)\Z$, which lies in $[0,\pi/3]$. For $t\in(1/2,1)$ the set $\{h>t\}\subset T$ is the arc $(-\ell_t,\ell_t)$ with $\ell_t=\arccos t\in(0,\pi/3)$, and the layer cake formula gives
+So $\nu(\psi)$ is a strictly decreasing function of the distance $d(\psi)$ from $\psi$ to $(2\pi/3)\Z$, which lies in $[0,\pi/3]$. For $t\in(1/2,1)$ the set $\{h>t\}\subset T$ is the arc $(-\ell_t,\ell_t)$ with $\ell_t=\arccos t\in(0,\pi/3)$. Writing $h(u)=\frac12+\int_{1/2}^1\mathbf 1\{h(u)>t\}\,dt$ and using Fubini,
 \[
 \frac{F_\tau(z_\varphi)}{r}=\frac12\int_T\nu+\int_{1/2}^1A(\varphi,\ell_t)\,dt,\qquad A(\varphi,\ell)=\int_{\varphi-\ell}^{\varphi+\ell}\nu(\psi)\,d\psi .
 \]
 Let $0<\varphi<\pi/3$ and $0<\ell<\pi/3$. Then $d(\varphi-\ell)=|\varphi-\ell|$ and $d(\varphi+\ell)=\min(\varphi+\ell,2\pi/3-\varphi-\ell)$. Both entries of the minimum exceed $|\varphi-\ell|$, the second because $\max(\varphi,\ell)<\pi/3$. Hence $\partial_\varphi A(\varphi,\ell)=\nu(\varphi+\ell)-\nu(\varphi-\ell)<0$, and $\partial_\varphi A$ is bounded. Differentiating under the integral gives $\frac{d}{d\varphi}F_\tau(z_\varphi)<0$ on $(0,\pi/3)$.
 
-The function $\varphi\mapsto F_\tau(z_\varphi)$ is even and has period $2\pi/3$, because $\nu$ and $h$ are even and $h$ has that period. It is therefore strictly increasing on $(-\pi/3,0)$, and on $\R/2\pi\Z$ its critical points are the $\varphi\in(\pi/3)\Z$. Its maxima are at $\varphi\in(2\pi/3)\Z$, where $z_\varphi$ is a shift of $x$. Its minima are at $\varphi\in\pi/3+(2\pi/3)\Z$, where $z_\varphi$ is a shift of $z_\pi=-x$. By~\eqref{eq:sandwich}, $\mathcal L(z_\varphi;x,\tau)$ is a constant minus $F_\tau(z_\varphi)$, and this gives the theorem.
+The function $\varphi\mapsto F_\tau(z_\varphi)$ is even and has period $2\pi/3$, because $\nu$ and $h$ are even and $h$ has that period. It is therefore strictly increasing on $(-\pi/3,0)$. Being even about $0$ and, by the period, about $\pi/3$, it has zero derivative at the points of $(\pi/3)\Z$, so on $\R/2\pi\Z$ its critical points are exactly these points. Its maxima are at $\varphi\in(2\pi/3)\Z$, where $z_\varphi$ is a shift of $x$. Its minima are at $\varphi\in\pi/3+(2\pi/3)\Z$, where $z_\varphi$ is a shift of $z_\pi=-x$. By~\eqref{eq:sandwich}, $\mathcal L(z_\varphi;x,\tau)$ is a constant minus $F_\tau(z_\varphi)$, and this gives the theorem.
 \end{proof}
 
 \begin{remark}[An example with integer entries]\label{rem:integer}

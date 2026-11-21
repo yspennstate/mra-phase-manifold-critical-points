@@ -8,15 +8,16 @@ sign flips of the true signal are critical points and conjecture (Conjecture 3.8
 are the only critical points, with the negative of the true signal as the global
 maximizer. This paper gives a signal of length seven for which, at every noise level up to 1/100, another
 signal on the same phase manifold has larger loss than every sign flip. The loss then has at least ten critical points up to
-cyclic shifts, where the conjecture predicts eight, and by rescaling and a perturbation argument (Corollary 5) the conjecture fails at every positive
-noise level on an open set of signals of length seven.
+cyclic shifts, where the conjecture predicts eight, and by rescaling and a perturbation argument (Corollary 6) the conjecture fails at every positive
+noise level on an open set of signals of length seven. For length three, where the phase manifold is a circle, the
+conjecture holds (Theorem 4).
 
 ## Files
 
 - `main.tex`, `main.pdf`: the paper.
 - `check_counterexample.py`, `check_counterexample.out`: checks in exact rational arithmetic the intervals in the
-  proof of Theorem 2 and the integer example in Remark 6. Standard library only.
-- `monte_carlo.py`, `monte_carlo.out`: the Monte Carlo averages of Remark 7
+  proof of Theorem 2 and the integer example in Remark 7. Standard library only.
+- `monte_carlo.py`, `monte_carlo.out`: the Monte Carlo averages of Remark 8
   (NumPy, seed 1, 200000 noise samples).
 
 ## Running the checks
