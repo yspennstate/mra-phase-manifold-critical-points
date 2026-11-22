@@ -2,6 +2,8 @@
 
 Yitzchak Shmalo
 
+DOI: [10.5281/zenodo.24435173](https://doi.org/10.5281/zenodo.24435173)
+
 In moment-constrained alignment for multireference alignment, introduced by Shahverdi, Ström and Andén
 (arXiv:2409.04868), the loss is studied on the signals with the power spectrum of the true signal. They show that the
 sign flips of the true signal are critical points and conjecture (Conjecture 3.8) that for signals of odd length these
